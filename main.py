@@ -5,6 +5,7 @@ import praw
 import requests
 import twitter
 import random
+import json
 
 import private
 
@@ -21,7 +22,6 @@ api = twitter.Api(private.consumer_key,
                           private.consumer_secret,
                           private.access_token_key,
                           private.access_token_secret)
-print(api.VerifyCredentials())
 
 
 
@@ -29,3 +29,10 @@ for submission in memereddit.hot(limit=3):
     response = requests.get(submission.url)
     if response.status_code == 200:
         status = api.PostUpdate('Testing the bot #HackathonASL', media=submission.url)
+
+
+#Lee del JSON
+with open('reddit.json', "r") as f:
+    subreddit = json.load(f)
+    for url in subreddit:
+        status = api.PostUpdate('Testing the bot #HackathonASL', media=url)
