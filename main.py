@@ -35,4 +35,4 @@ for submission in memereddit.hot(limit=3):
 with open('reddit.json', "r") as f:
     subreddit = json.load(f)
     for url in subreddit:
-        status = api.PostUpdate('Testing the bot #HackathonASL', media=url)
+        status = api.PostUpdate('Testing the bot', media=url)
